@@ -19,15 +19,16 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
-        body { font-family: 'Noto Sans TC', sans-serif; background-color: #F8F9FB; }
+        /* 貓咪風格配色調整：背景改為溫暖的奶油色 */
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #FFFBF7; color: #5C5046; }
         .font-serif { font-family: 'Noto Serif TC', serif; }
         .font-cursive { font-family: 'Brush Script MT', cursive; }
         
-        /* Custom Scrollbar */
+        /* Custom Scrollbar - 改為暖色調 */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        ::-webkit-scrollbar-thumb { background: #D6CCC2; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B0A69D; }
 
         @keyframes fade-in {
             from { opacity: 0; transform: translateY(10px); }
@@ -71,10 +72,10 @@
         // --- Mock Data ---
 
         const MOCK_STATS = [
-            { label: '現役種貓', value: '12', sub: '公 4 / 母 8', icon: Award, color: 'text-amber-500', bg: 'bg-amber-50' },
-            { label: '在舍幼貓', value: '8', sub: '待找家 3', icon: Cat, color: 'text-rose-500', bg: 'bg-rose-50' },
-            { label: '本月預產', value: '2', sub: '預計 8-10 隻', icon: Calendar, color: 'text-indigo-500', bg: 'bg-indigo-50' },
-            { label: '待回訪家長', value: '5', sub: '今日需聯繫 2', icon: Users, color: 'text-teal-500', bg: 'bg-teal-50' },
+            { label: '現役種貓', value: '12', sub: '公 4 / 母 8', icon: Award, color: 'text-amber-500', bg: 'bg-[#FFF9F0]' },
+            { label: '在舍幼貓', value: '8', sub: '待找家 3', icon: Cat, color: 'text-[#E89A9A]', bg: 'bg-[#FFF0F0]' },
+            { label: '本月預產', value: '2', sub: '預計 8-10 隻', icon: Calendar, color: 'text-[#8A9A5B]', bg: 'bg-[#F2F7E8]' },
+            { label: '待回訪家長', value: '5', sub: '今日需聯繫 2', icon: Users, color: 'text-[#D4A373]', bg: 'bg-[#F9F3E8]' },
         ];
 
         const MOCK_BREEDING_CATS = [
@@ -102,22 +103,22 @@
         // --- Components ---
 
         const Card = ({ children, className = "", noPadding = false }) => (
-            <div className={`bg-white rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-slate-100/50 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 ${noPadding ? '' : 'p-6'} ${className}`}>
+            <div className={`bg-white rounded-3xl shadow-[0_4px_20px_rgba(230,220,210,0.3)] border border-[#F2EBE5] hover:shadow-[0_8px_30px_rgba(230,220,210,0.5)] transition-all duration-300 ${noPadding ? '' : 'p-6'} ${className}`}>
                 {children}
             </div>
         );
 
         const Badge = ({ children, type = 'default' }) => {
             const styles = {
-                default: 'bg-slate-100 text-slate-600 border-slate-200',
-                success: 'bg-emerald-50 text-emerald-700 border-emerald-100',
-                warning: 'bg-amber-50 text-amber-700 border-amber-100',
-                danger: 'bg-rose-50 text-rose-700 border-rose-100',
-                info: 'bg-blue-50 text-blue-700 border-blue-100',
-                purple: 'bg-violet-50 text-violet-700 border-violet-100',
+                default: 'bg-[#F5F5F4] text-[#78716C] border-[#E7E5E4]',
+                success: 'bg-[#ECFDF5] text-[#047857] border-[#D1FAE5]',
+                warning: 'bg-[#FFFBEB] text-[#B45309] border-[#FEF3C7]',
+                danger: 'bg-[#FEF2F2] text-[#BE123C] border-[#FEE2E2]',
+                info: 'bg-[#EFF6FF] text-[#1D4ED8] border-[#DBEAFE]',
+                purple: 'bg-[#F3E8FF] text-[#7E22CE] border-[#E9D5FF]',
             };
             return (
-                <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${styles[type] || styles.default} tracking-wide`}>
+                <span className={`px-2.5 py-1 rounded-xl text-xs font-medium border ${styles[type] || styles.default} tracking-wide`}>
                 {children}
                 </span>
             );
@@ -134,11 +135,11 @@
                 {/* Welcome Banner */}
                 <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
                     <div>
-                    <h2 className="text-3xl font-serif font-bold text-slate-800 tracking-tight">早安，主理人</h2>
-                    <p className="text-slate-500 mt-1 font-light">今天是個繁育幼貓的好日子，系統各項指標運行正常。</p>
+                    <h2 className="text-3xl font-serif font-bold text-[#433831] tracking-tight">早安，管理員</h2>
+                    <p className="text-[#8C847E] mt-1 font-light">今天是個繁育幼貓的好日子，系統各項指標運行正常。</p>
                     </div>
-                    <button className="flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-xl hover:bg-slate-800 hover:scale-105 transition-all shadow-lg shadow-slate-200">
-                    <Sparkles size={18} className="text-amber-300" />
+                    <button className="flex items-center gap-2 bg-[#8C7B70] text-white px-5 py-2.5 rounded-2xl hover:bg-[#6D5D53] hover:scale-105 transition-all shadow-lg shadow-[#D6CCC2]">
+                    <Sparkles size={18} className="text-[#FFE4C4]" />
                     <span className="font-medium">新增繁育計畫</span>
                     </button>
                 </div>
@@ -146,18 +147,18 @@
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {MOCK_STATS.map((stat, idx) => (
-                    <Card key={idx} className="relative group overflow-hidden border-none ring-1 ring-slate-100">
+                    <Card key={idx} className="relative group overflow-hidden border-none">
                         <div className="flex justify-between items-start">
                         <div>
-                            <p className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1">{stat.label}</p>
-                            <h3 className="text-3xl font-bold text-slate-800">{stat.value}</h3>
+                            <p className="text-[#A8A29E] text-xs font-bold uppercase tracking-wider mb-1">{stat.label}</p>
+                            <h3 className="text-3xl font-bold text-[#5C5046]">{stat.value}</h3>
                         </div>
-                        <div className={`p-3 rounded-xl ${stat.bg} ${stat.color} group-hover:scale-110 transition-transform duration-300`}>
+                        <div className={`p-3 rounded-2xl ${stat.bg} ${stat.color} group-hover:scale-110 transition-transform duration-300`}>
                             <stat.icon size={24} />
                         </div>
                         </div>
-                        <div className="mt-4 pt-4 border-t border-slate-50">
-                        <p className="text-xs text-slate-400 font-medium flex items-center gap-1">
+                        <div className="mt-4 pt-4 border-t border-[#F5F0EB]">
+                        <p className="text-xs text-[#8C847E] font-medium flex items-center gap-1">
                             <Activity size={12} className={stat.color} /> 
                             {stat.sub}
                         </p>
@@ -170,10 +171,10 @@
                     {/* Upcoming Tasks */}
                     <div className="lg:col-span-2 space-y-4">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-serif font-bold text-slate-700 flex items-center gap-2">
-                        <Bell size={20} className="text-amber-500" /> 待辦事項提醒
+                        <h3 className="text-lg font-serif font-bold text-[#5C5046] flex items-center gap-2">
+                        <Bell size={20} className="text-[#D4A373]" /> 待辦事項提醒
                         </h3>
-                        <button className="text-xs font-bold text-slate-400 hover:text-slate-600 uppercase tracking-wide">查看全部</button>
+                        <button className="text-xs font-bold text-[#A8A29E] hover:text-[#5C5046] uppercase tracking-wide">查看全部</button>
                     </div>
                     <Card noPadding className="overflow-hidden">
                         {[
@@ -181,19 +182,19 @@
                         { title: 'Luna 產檢 (超音波)', date: '明天', type: 'normal', desc: '預約時間：下午 2:00' },
                         { title: '回訪家長：陳小姐', date: '2024-01-17', type: 'normal', desc: '追蹤小金適應狀況' },
                         ].map((task, i) => (
-                        <div key={i} className="p-5 flex items-center justify-between hover:bg-slate-50 transition border-b border-slate-50 last:border-0 group cursor-pointer">
+                        <div key={i} className="p-5 flex items-center justify-between hover:bg-[#FAF7F2] transition border-b border-[#F5F0EB] last:border-0 group cursor-pointer">
                             <div className="flex items-start gap-4">
-                            <div className={`mt-1.5 w-2.5 h-2.5 rounded-full ring-4 ring-opacity-20 ${task.type === 'urgent' ? 'bg-rose-500 ring-rose-500' : 'bg-blue-500 ring-blue-500'}`}></div>
+                            <div className={`mt-1.5 w-2.5 h-2.5 rounded-full ring-4 ring-opacity-20 ${task.type === 'urgent' ? 'bg-[#E89A9A] ring-[#E89A9A]' : 'bg-[#A3B18A] ring-[#A3B18A]'}`}></div>
                             <div>
-                                <span className="text-slate-800 font-bold block group-hover:text-indigo-600 transition">{task.title}</span>
-                                <span className="text-xs text-slate-400 font-light">{task.desc}</span>
+                                <span className="text-[#5C5046] font-bold block group-hover:text-[#D4A373] transition">{task.title}</span>
+                                <span className="text-xs text-[#8C847E] font-light">{task.desc}</span>
                             </div>
                             </div>
                             <div className="flex items-center gap-4">
-                                <span className={`text-xs font-bold px-3 py-1 rounded-full ${task.type === 'urgent' ? 'bg-rose-50 text-rose-600' : 'bg-slate-100 text-slate-500'}`}>
+                                <span className={`text-xs font-bold px-3 py-1 rounded-full ${task.type === 'urgent' ? 'bg-[#FFF0F0] text-[#E89A9A]' : 'bg-[#F2F7E8] text-[#8A9A5B]'}`}>
                                 {task.date}
                                 </span>
-                                <ChevronRight size={16} className="text-slate-300 group-hover:text-slate-500" />
+                                <ChevronRight size={16} className="text-[#D6CCC2] group-hover:text-[#A8A29E]" />
                             </div>
                         </div>
                         ))}
@@ -202,37 +203,37 @@
 
                     {/* Quick Contract Access */}
                     <div className="space-y-4">
-                    <h3 className="text-lg font-serif font-bold text-slate-700 flex items-center gap-2">
-                        <FileText size={20} className="text-amber-500" /> 最近合約
+                    <h3 className="text-lg font-serif font-bold text-[#5C5046] flex items-center gap-2">
+                        <FileText size={20} className="text-[#D4A373]" /> 最近合約
                     </h3>
-                    <Card className="space-y-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white border-none shadow-xl shadow-slate-200">
+                    <Card className="space-y-4 bg-gradient-to-br from-[#5C5046] to-[#433831] text-white border-none shadow-xl shadow-[#D6CCC2]">
                         <div className="p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/5 flex items-center justify-between group cursor-pointer hover:bg-white/20 transition">
                         <div className="flex items-center gap-4">
-                            <div className="bg-amber-500/20 p-2 rounded-lg text-amber-300">
+                            <div className="bg-[#D4A373]/20 p-2 rounded-lg text-[#FFE4C4]">
                             <FileText size={18} />
                             </div>
                             <div>
-                            <div className="text-sm font-bold text-white group-hover:text-amber-200 transition">林先生 - 購貓合約</div>
-                            <div className="text-xs text-slate-400">已簽署 • 2024-01-05</div>
+                            <div className="text-sm font-bold text-white group-hover:text-[#FFE4C4] transition">林先生 - 購貓合約</div>
+                            <div className="text-xs text-[#A8A29E]">已簽署 • 2024-01-05</div>
                             </div>
                         </div>
-                        <CheckCircle size={16} className="text-emerald-400" />
+                        <CheckCircle size={16} className="text-[#A3B18A]" />
                         </div>
 
                         <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between group cursor-pointer hover:bg-white/10 transition">
                         <div className="flex items-center gap-4">
-                            <div className="bg-slate-700 p-2 rounded-lg text-slate-400">
+                            <div className="bg-[#433831] p-2 rounded-lg text-[#A8A29E]">
                             <FileText size={18} />
                             </div>
                             <div>
-                            <div className="text-sm font-bold text-slate-200">陳小姐 - 定型化契約</div>
-                            <div className="text-xs text-slate-500">草稿中 • 等待審核</div>
+                            <div className="text-sm font-bold text-[#E5E0D8]">陳小姐 - 定型化契約</div>
+                            <div className="text-xs text-[#8C847E]">草稿中 • 等待審核</div>
                             </div>
                         </div>
-                        <span className="text-xs bg-white/10 px-2 py-0.5 rounded text-slate-300 group-hover:bg-white/20 transition">編輯</span>
+                        <span className="text-xs bg-white/10 px-2 py-0.5 rounded text-[#D6CCC2] group-hover:bg-white/20 transition">編輯</span>
                         </div>
                         
-                        <button className="w-full py-2 text-xs text-center text-slate-400 hover:text-white transition uppercase tracking-widest mt-2 border-t border-white/5 pt-4">
+                        <button className="w-full py-2 text-xs text-center text-[#A8A29E] hover:text-white transition uppercase tracking-widest mt-2 border-t border-white/5 pt-4">
                         前往合約庫
                         </button>
                     </Card>
@@ -245,25 +246,25 @@
                 <div className="space-y-8 animate-fade-in">
                 <div className="flex justify-between items-center">
                     <div>
-                    <h2 className="text-2xl font-serif font-bold text-slate-800 flex items-center gap-2">
-                        <Dna className="text-violet-500" /> 繁育管理與血統
+                    <h2 className="text-2xl font-serif font-bold text-[#5C5046] flex items-center gap-2">
+                        <Dna className="text-[#9F8189]" /> 繁育管理與血統
                     </h2>
-                    <p className="text-sm text-slate-500 mt-1">追蹤貓舍核心血系與繁育計畫</p>
+                    <p className="text-sm text-[#8C847E] mt-1">追蹤貓舍核心血系與繁育計畫</p>
                     </div>
                     <div className="flex gap-3">
-                    <button className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 shadow-sm transition">匯出 WCF 表格</button>
-                    <button className="px-4 py-2 text-sm font-medium bg-slate-900 text-white rounded-xl hover:bg-slate-800 shadow-lg shadow-slate-200 transition">新增種貓</button>
+                    <button className="px-4 py-2 text-sm font-medium text-[#5C5046] bg-white border border-[#E5E0D8] rounded-xl hover:bg-[#FAF7F2] shadow-sm transition">匯出 WCF 表格</button>
+                    <button className="px-4 py-2 text-sm font-medium bg-[#8C7B70] text-white rounded-xl hover:bg-[#6D5D53] shadow-lg shadow-[#D6CCC2] transition">新增種貓</button>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2 space-y-4">
-                    <h3 className="text-lg font-serif font-bold text-slate-700 pl-1">目前窩次狀態</h3>
+                    <h3 className="text-lg font-serif font-bold text-[#5C5046] pl-1">目前窩次狀態</h3>
                     <Card noPadding className="overflow-hidden">
                         <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
                             <thead>
-                            <tr className="bg-slate-50/80 border-b border-slate-100 text-slate-500 font-medium">
+                            <tr className="bg-[#FAF7F2] border-b border-[#F5F0EB] text-[#8C847E] font-medium">
                                 <th className="py-4 pl-6 font-serif">窩次編號</th>
                                 <th className="py-4">父系 / 母系</th>
                                 <th className="py-4">日期</th>
@@ -272,22 +273,22 @@
                                 <th className="py-4 pr-6 text-right">管理</th>
                             </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-50">
+                            <tbody className="divide-y divide-[#F5F0EB]">
                             {MOCK_LITTERS.map((litter) => (
-                                <tr key={litter.id} className="hover:bg-slate-50/80 group transition-colors">
-                                <td className="py-4 pl-6 font-mono font-bold text-slate-700 group-hover:text-indigo-600 transition">{litter.id}</td>
+                                <tr key={litter.id} className="hover:bg-[#FAF7F2] group transition-colors">
+                                <td className="py-4 pl-6 font-mono font-bold text-[#5C5046] group-hover:text-[#D4A373] transition">{litter.id}</td>
                                 <td className="py-4">
                                     <div className="flex items-center gap-2">
                                     <Badge type="info">{litter.sire}</Badge> 
-                                    <span className="text-slate-300 text-xs">✕</span>
+                                    <span className="text-[#D6CCC2] text-xs">✕</span>
                                     <Badge type="purple">{litter.dam}</Badge>
                                     </div>
                                 </td>
-                                <td className="py-4 text-slate-600">{litter.date}</td>
-                                <td className="py-4 text-slate-600 font-medium">{litter.count > 0 ? `${litter.count} 隻` : '-'}</td>
+                                <td className="py-4 text-[#8C847E]">{litter.date}</td>
+                                <td className="py-4 text-[#8C847E] font-medium">{litter.count > 0 ? `${litter.count} 隻` : '-'}</td>
                                 <td className="py-4"><Badge type={litter.status === '預產期' ? 'warning' : 'success'}>{litter.status}</Badge></td>
                                 <td className="py-4 pr-6 text-right">
-                                    <button className="p-2 rounded-full hover:bg-slate-200 text-slate-400 hover:text-slate-700 transition"><Settings size={16} /></button>
+                                    <button className="p-2 rounded-full hover:bg-[#E5E0D8] text-[#A8A29E] hover:text-[#5C5046] transition"><Settings size={16} /></button>
                                 </td>
                                 </tr>
                             ))}
@@ -298,31 +299,31 @@
                     </div>
 
                     <div className="space-y-4">
-                    <h3 className="text-lg font-serif font-bold text-slate-700 pl-1">種貓陣容</h3>
-                    <Card className="bg-[#fcfaf7] border-2 border-dashed border-[#e6e0d6]">
-                        <p className="text-xs font-bold text-amber-600/60 uppercase tracking-widest mb-4">PEDIGREE PREVIEW</p>
+                    <h3 className="text-lg font-serif font-bold text-[#5C5046] pl-1">種貓陣容</h3>
+                    <Card className="bg-[#FAF7F2] border-2 border-dashed border-[#E5E0D8]">
+                        <p className="text-xs font-bold text-[#D4A373]/80 uppercase tracking-widest mb-4">PEDIGREE PREVIEW</p>
                         <div className="space-y-3">
                         {MOCK_BREEDING_CATS.map(cat => (
-                            <div key={cat.id} className="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4 cursor-pointer hover:border-amber-300 hover:shadow-md transition group">
-                            <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
+                            <div key={cat.id} className="bg-white p-3 rounded-2xl border border-[#F5F0EB] shadow-sm flex items-center gap-4 cursor-pointer hover:border-[#D4A373] hover:shadow-md transition group">
+                            <div className="w-12 h-12 bg-[#FAF7F2] rounded-full flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
                                 {cat.image}
                             </div>
                             <div className="flex-1">
                                 <div className="flex justify-between items-center">
-                                <span className="font-bold text-slate-800 text-sm group-hover:text-amber-600 transition">{cat.name}</span>
+                                <span className="font-bold text-[#5C5046] text-sm group-hover:text-[#D4A373] transition">{cat.name}</span>
                                 {cat.gender === '公' ? 
-                                    <span className="w-2 h-2 rounded-full bg-blue-500"></span> : 
-                                    <span className="w-2 h-2 rounded-full bg-rose-500"></span>
+                                    <span className="w-2 h-2 rounded-full bg-[#93C5FD]"></span> : 
+                                    <span className="w-2 h-2 rounded-full bg-[#E89A9A]"></span>
                                 }
                                 </div>
                                 <div className="flex items-center justify-between mt-1">
-                                <div className="text-xs text-slate-400 font-mono">{cat.regNumber}</div>
-                                <span className="text-[10px] font-bold text-slate-300 bg-slate-50 px-1.5 py-0.5 rounded">{cat.breed.split(' ')[0]}</span>
+                                <div className="text-xs text-[#A8A29E] font-mono">{cat.regNumber}</div>
+                                <span className="text-[10px] font-bold text-[#D6CCC2] bg-[#FAF7F2] px-1.5 py-0.5 rounded">{cat.breed.split(' ')[0]}</span>
                                 </div>
                             </div>
                             </div>
                         ))}
-                        <button className="w-full py-3 text-sm text-slate-400 hover:text-amber-600 font-medium border-t border-dashed border-slate-200 mt-2 transition flex items-center justify-center gap-2">
+                        <button className="w-full py-3 text-sm text-[#8C847E] hover:text-[#D4A373] font-medium border-t border-dashed border-[#E5E0D8] mt-2 transition flex items-center justify-center gap-2">
                             查看完整種貓庫 <ArrowRight size={14} />
                         </button>
                         </div>
@@ -336,31 +337,31 @@
                 <div className="space-y-8 animate-fade-in">
                 <div className="flex justify-between items-center">
                     <div>
-                    <h2 className="text-2xl font-serif font-bold text-slate-800 flex items-center gap-2">
-                        <Syringe className="text-emerald-500" /> 健康與疫苗管理
+                    <h2 className="text-2xl font-serif font-bold text-[#5C5046] flex items-center gap-2">
+                        <Syringe className="text-[#A3B18A]" /> 健康與疫苗管理
                     </h2>
-                    <p className="text-sm text-slate-500 mt-1">確保每一隻幼貓的健康成長紀錄</p>
+                    <p className="text-sm text-[#8C847E] mt-1">確保每一隻幼貓的健康成長紀錄</p>
                     </div>
                     <div className="relative group">
-                        <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-hover:text-emerald-500 transition" />
-                        <input type="text" placeholder="搜尋晶片 / 名字..." className="pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none text-sm w-64 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition shadow-sm" />
+                        <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A8A29E] group-hover:text-[#A3B18A] transition" />
+                        <input type="text" placeholder="搜尋晶片 / 名字..." className="pl-10 pr-4 py-2.5 bg-white border border-[#E5E0D8] rounded-xl outline-none text-sm w-64 focus:ring-2 focus:ring-[#A3B18A]/20 focus:border-[#A3B18A] transition shadow-sm" />
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-6">
                     <Card noPadding className="overflow-hidden">
-                    <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                        <h3 className="text-base font-bold text-slate-700">在舍幼貓健康追蹤</h3>
+                    <div className="px-6 py-5 border-b border-[#F5F0EB] flex items-center justify-between bg-[#FAF7F2]">
+                        <h3 className="text-base font-bold text-[#5C5046]">在舍幼貓健康追蹤</h3>
                         <div className="flex gap-4 text-xs font-medium">
-                            <span className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 rounded-md text-emerald-700"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div> 健康</span>
-                            <span className="flex items-center gap-1.5 px-2 py-1 bg-amber-50 rounded-md text-amber-700"><div className="w-1.5 h-1.5 rounded-full bg-amber-500"></div> 觀察中</span>
+                            <span className="flex items-center gap-1.5 px-2 py-1 bg-[#F2F7E8] rounded-md text-[#588157]"><div className="w-1.5 h-1.5 rounded-full bg-[#A3B18A]"></div> 健康</span>
+                            <span className="flex items-center gap-1.5 px-2 py-1 bg-[#FEF3C7] rounded-md text-[#B45309]"><div className="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></div> 觀察中</span>
                         </div>
                     </div>
                     
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
                         <thead>
-                            <tr className="text-slate-400 text-xs uppercase tracking-wider bg-white">
+                            <tr className="text-[#A8A29E] text-xs uppercase tracking-wider bg-white">
                             <th className="px-6 py-4 font-medium">名字/花色</th>
                             <th className="px-6 py-4 font-medium">窩次</th>
                             <th className="px-6 py-4 font-medium">月齡</th>
@@ -371,30 +372,30 @@
                             <th className="px-6 py-4 font-medium text-right">操作</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-50">
+                        <tbody className="divide-y divide-[#F5F0EB]">
                             {MOCK_HEALTH_RECORDS.map((cat) => (
-                            <tr key={cat.id} className="hover:bg-slate-50 transition-colors group">
-                                <td className="px-6 py-4 font-bold text-slate-700">{cat.name}</td>
-                                <td className="px-6 py-4 text-slate-500">{cat.litter}</td>
-                                <td className="px-6 py-4 text-slate-600">{cat.age}</td>
-                                <td className="px-6 py-4 text-slate-600 font-mono">{cat.weight}</td>
+                            <tr key={cat.id} className="hover:bg-[#FAF7F2] transition-colors group">
+                                <td className="px-6 py-4 font-bold text-[#5C5046]">{cat.name}</td>
+                                <td className="px-6 py-4 text-[#8C847E]">{cat.litter}</td>
+                                <td className="px-6 py-4 text-[#5C5046]">{cat.age}</td>
+                                <td className="px-6 py-4 text-[#5C5046] font-mono">{cat.weight}</td>
                                 <td className="px-6 py-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-                                    <div className={`h-full rounded-full shadow-sm ${cat.vaccineStatus === '延遲' ? 'bg-amber-400' : 'bg-gradient-to-r from-emerald-400 to-emerald-500'}`} style={{ width: '33%' }}></div>
+                                    <div className="w-full h-2 bg-[#F5F0EB] rounded-full overflow-hidden">
+                                    <div className={`h-full rounded-full shadow-sm ${cat.vaccineStatus === '延遲' ? 'bg-[#FCD34D]' : 'bg-gradient-to-r from-[#A3B18A] to-[#588157]'}`} style={{ width: '33%' }}></div>
                                     </div>
-                                    <span className="text-xs text-slate-400 font-mono">1/3</span>
+                                    <span className="text-xs text-[#A8A29E] font-mono">1/3</span>
                                 </div>
                                 </td>
-                                <td className="px-6 py-4 font-mono text-slate-600">
+                                <td className="px-6 py-4 font-mono text-[#5C5046]">
                                 {cat.nextVaccine}
-                                {cat.vaccineStatus === '延遲' && <AlertCircle size={14} className="inline ml-2 text-amber-500" />}
+                                {cat.vaccineStatus === '延遲' && <AlertCircle size={14} className="inline ml-2 text-[#F59E0B]" />}
                                 </td>
                                 <td className="px-6 py-4">
                                 <Badge type={cat.status.includes('健康') ? 'success' : 'warning'}>{cat.status}</Badge>
                                 </td>
                                 <td className="px-6 py-4 text-right">
-                                <button className="text-slate-400 hover:text-emerald-600 font-medium text-sm transition px-3 py-1 rounded-lg hover:bg-emerald-50">紀錄</button>
+                                <button className="text-[#A8A29E] hover:text-[#588157] font-medium text-sm transition px-3 py-1 rounded-lg hover:bg-[#F2F7E8]">紀錄</button>
                                 </td>
                             </tr>
                             ))}
@@ -410,12 +411,12 @@
                 <div className="space-y-8 animate-fade-in">
                 <div className="flex justify-between items-center">
                     <div>
-                    <h2 className="text-2xl font-serif font-bold text-slate-800 flex items-center gap-2">
-                        <FileText className="text-blue-500" /> 定型化契約管理
+                    <h2 className="text-2xl font-serif font-bold text-[#5C5046] flex items-center gap-2">
+                        <FileText className="text-[#7F9CA2]" /> 定型化契約管理
                     </h2>
-                    <p className="text-sm text-slate-500 mt-1">法律與保固條款的生成與管理</p>
+                    <p className="text-sm text-[#8C847E] mt-1">法律與保固條款的生成與管理</p>
                     </div>
-                    <button className="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm hover:bg-slate-800 flex items-center gap-2 shadow-lg shadow-slate-200 transition">
+                    <button className="bg-[#8C7B70] text-white px-5 py-2.5 rounded-xl text-sm hover:bg-[#6D5D53] flex items-center gap-2 shadow-lg shadow-[#D6CCC2] transition">
                     <Printer size={18} /> 預覽 PDF
                     </button>
                 </div>
@@ -423,7 +424,7 @@
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     {/* Template Selector */}
                     <div className="lg:col-span-4 space-y-4">
-                    <div className="p-4 bg-blue-600 rounded-2xl text-white shadow-xl shadow-blue-200 relative overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1">
+                    <div className="p-4 bg-[#D6BCB0] rounded-2xl text-white shadow-xl shadow-[#D6BCB0]/40 relative overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1">
                         <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                             <FileText size={120} />
                         </div>
@@ -433,7 +434,7 @@
                             </div>
                             <div>
                             <h3 className="font-bold text-xl mb-1">寵物貓讓渡合約</h3>
-                            <p className="text-blue-100 text-sm">適用於一般家庭 (含絕育條款)</p>
+                            <p className="text-[#FFF0F0] text-sm">適用於一般家庭 (含絕育條款)</p>
                             <div className="flex gap-2 mt-4">
                                 <span className="text-[10px] bg-white/20 px-2 py-1 rounded backdrop-blur-sm">FIP 180天保固</span>
                                 <span className="text-[10px] bg-white/20 px-2 py-1 rounded backdrop-blur-sm">2年遺傳病</span>
@@ -442,72 +443,72 @@
                         </div>
                     </div>
 
-                    <div className="p-4 bg-white border border-slate-200 rounded-2xl text-slate-600 hover:border-slate-300 hover:shadow-lg transition cursor-pointer flex items-center gap-4">
-                        <div className="p-3 bg-purple-50 text-purple-600 rounded-xl">
+                    <div className="p-4 bg-white border border-[#E5E0D8] rounded-2xl text-[#8C847E] hover:border-[#D4A373] hover:shadow-lg transition cursor-pointer flex items-center gap-4">
+                        <div className="p-3 bg-[#F3E8FF] text-[#7E22CE] rounded-xl">
                             <Dna size={24} />
                         </div>
                         <div>
-                            <h3 className="font-bold text-slate-800">繁育權轉讓合約</h3>
-                            <p className="text-xs text-slate-400 mt-0.5">專業版 v1.0 • 適用於註冊貓舍</p>
+                            <h3 className="font-bold text-[#5C5046]">繁育權轉讓合約</h3>
+                            <p className="text-xs text-[#A8A29E] mt-0.5">專業版 v1.0 • 適用於註冊貓舍</p>
                         </div>
                     </div>
                     </div>
 
                     {/* Contract Preview (Mock) */}
                     <div className="lg:col-span-8">
-                    <div className="bg-[#fdfbf7] p-8 md:p-12 rounded-xl shadow-2xl shadow-slate-200/50 border border-slate-100 h-[600px] overflow-y-auto relative font-serif text-slate-800 leading-relaxed">
+                    <div className="bg-[#FFFCF9] p-8 md:p-12 rounded-xl shadow-2xl shadow-[#D6CCC2]/50 border border-[#F5F0EB] h-[600px] overflow-y-auto relative font-serif text-[#433831] leading-relaxed">
                         {/* Paper Texture Effect */}
                         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cream-dust.png')" }}></div>
                         
-                        <div className="absolute top-6 right-8 text-xs font-bold text-slate-300 font-sans tracking-[0.2em] border border-slate-200 px-2 py-1 rounded uppercase">Preview</div>
+                        <div className="absolute top-6 right-8 text-xs font-bold text-[#D6CCC2] font-sans tracking-[0.2em] border border-[#E5E0D8] px-2 py-1 rounded uppercase">Preview</div>
                         
                         <div className="max-w-2xl mx-auto relative z-10">
                         <div className="text-center mb-12">
                             <h1 className="text-3xl font-bold mb-2 tracking-wide text-black">貓隻讓渡契約書</h1>
-                            <div className="w-16 h-1 bg-slate-800 mx-auto mt-4"></div>
+                            <div className="w-16 h-1 bg-[#5C5046] mx-auto mt-4"></div>
                         </div>
                         
                         <div className="space-y-8 text-sm md:text-base">
                             <div className="grid grid-cols-2 gap-8">
                                 <div>
-                                <p className="text-slate-400 text-xs mb-1 uppercase tracking-wider">讓渡人（甲方）</p>
-                                <p className="font-bold text-lg border-b-2 border-slate-200 pb-1">AURUM MANOR 奧倫莊園</p>
+                                <p className="text-[#A8A29E] text-xs mb-1 uppercase tracking-wider">讓渡人（甲方）</p>
+                                <p className="font-bold text-lg border-b-2 border-[#E5E0D8] pb-1">AURUM MANOR 奧倫莊園</p>
                                 </div>
                                 <div>
-                                <p className="text-slate-400 text-xs mb-1 uppercase tracking-wider">承讓人（乙方）</p>
-                                <p className="font-bold text-lg border-b-2 border-amber-200 bg-amber-50/50 pb-1 px-2 -mx-2 rounded">林先生</p>
+                                <p className="text-[#A8A29E] text-xs mb-1 uppercase tracking-wider">承讓人（乙方）</p>
+                                <p className="font-bold text-lg border-b-2 border-[#FFE4C4] bg-[#FFF9F0] pb-1 px-2 -mx-2 rounded">林先生</p>
                                 </div>
                             </div>
 
-                            <div className="bg-white border border-slate-100 p-6 rounded-lg shadow-sm">
-                            <h4 className="font-bold mb-4 flex items-center gap-2 text-slate-900 border-b border-slate-100 pb-2">
+                            <div className="bg-white border border-[#E5E0D8] p-6 rounded-lg shadow-sm">
+                            <h4 className="font-bold mb-4 flex items-center gap-2 text-[#433831] border-b border-[#F5F0EB] pb-2">
                                 <Cat size={16} /> 第一條：標的物
                             </h4>
-                            <div className="grid grid-cols-2 gap-4 text-slate-600">
-                                <div className="flex justify-between"><span className="text-slate-400">品種</span> <span>英國短毛貓</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400">性別</span> <span>公</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400">花色</span> <span>NY12</span></div>
-                                <div className="flex justify-between"><span className="text-slate-400">生日</span> <span>2023-10-15</span></div>
+                            <div className="grid grid-cols-2 gap-4 text-[#8C847E]">
+                                <div className="flex justify-between"><span className="text-[#D6CCC2]">品種</span> <span>英國短毛貓</span></div>
+                                <div className="flex justify-between"><span className="text-[#D6CCC2]">性別</span> <span>公</span></div>
+                                <div className="flex justify-between"><span className="text-[#D6CCC2]">花色</span> <span>NY12</span></div>
+                                <div className="flex justify-between"><span className="text-[#D6CCC2]">生日</span> <span>2023-10-15</span></div>
                             </div>
                             </div>
 
-                            <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-rose-400">
-                            <h4 className="font-bold mb-3 text-rose-800 flex items-center gap-2">
+                            <div className="bg-[#FAF7F2] p-6 rounded-lg border-l-4 border-[#E89A9A]">
+                            <h4 className="font-bold mb-3 text-[#9D5C63] flex items-center gap-2">
                                 <AlertCircle size={18} /> 第四條：健康擔保 (核心條款)
                             </h4>
-                            <div className="space-y-3 text-slate-700 text-sm">
+                            <div className="space-y-3 text-[#5C5046] text-sm">
                                 <p>1. 甲方保證交付之貓隻於交付當日無臨床疾病徵兆。</p>
-                                <p>2. <strong className="text-slate-900 bg-slate-200 px-1 rounded">遺傳性疾病保固：</strong> 若貓隻於交付後 <span className="font-bold underline decoration-rose-400 decoration-2 underline-offset-2">兩年內</span> 經診斷患有 HCM 或 PKD，甲方無條件賠償。</p>
-                                <p>3. <strong className="text-slate-900 bg-slate-200 px-1 rounded">FIP 保固：</strong> 若於交付後 <span className="font-bold underline decoration-rose-400 decoration-2 underline-offset-2">180天內</span> 確診 FIP，甲方將協助提供治療藥物。</p>
+                                <p>2. <strong className="text-[#433831] bg-[#E5E0D8] px-1 rounded">遺傳性疾病保固：</strong> 若貓隻於交付後 <span className="font-bold underline decoration-[#E89A9A] decoration-2 underline-offset-2">兩年內</span> 經診斷患有 HCM 或 PKD，甲方無條件賠償。</p>
+                                <p>3. <strong className="text-[#433831] bg-[#E5E0D8] px-1 rounded">FIP 保固：</strong> 若於交付後 <span className="font-bold underline decoration-[#E89A9A] decoration-2 underline-offset-2">180天內</span> 確診 FIP，甲方將協助提供治療藥物。</p>
                             </div>
                             </div>
 
-                            <p className="mt-12 text-center text-slate-400 text-xs">本契約一式兩份，由甲乙雙方各執一份為憑。</p>
+                            <p className="mt-12 text-center text-[#A8A29E] text-xs">本契約一式兩份，由甲乙雙方各執一份為憑。</p>
                             
-                            <div className="flex justify-between mt-16 pt-8 border-t border-slate-200">
+                            <div className="flex justify-between mt-16 pt-8 border-t border-[#E5E0D8]">
                             <div className="relative">
                                 <p className="mb-8">甲方簽章：</p>
-                                <span className="font-cursive text-3xl text-slate-800 absolute -top-2 left-10 -rotate-6 opacity-80">AURUM MANOR</span>
+                                <span className="font-cursive text-3xl text-[#5C5046] absolute -top-2 left-10 -rotate-6 opacity-80">AURUM MANOR</span>
                             </div>
                             <div>乙方簽章：_________________</div>
                             </div>
@@ -523,12 +524,12 @@
                 <div className="space-y-8 animate-fade-in">
                 <div className="flex justify-between items-center">
                     <div>
-                    <h2 className="text-2xl font-serif font-bold text-slate-800 flex items-center gap-2">
-                        <Users className="text-orange-500" /> 家長回訪追蹤
+                    <h2 className="text-2xl font-serif font-bold text-[#5C5046] flex items-center gap-2">
+                        <Users className="text-[#D4A373]" /> 家長回訪追蹤
                     </h2>
-                    <p className="text-sm text-slate-500 mt-1">良好的售後服務是專業貓舍的基石</p>
+                    <p className="text-sm text-[#8C847E] mt-1">良好的售後服務是專業貓舍的基石</p>
                     </div>
-                    <button className="bg-orange-500 text-white px-5 py-2.5 rounded-xl text-sm hover:bg-orange-600 shadow-lg shadow-orange-200 transition font-medium">
+                    <button className="bg-[#D4A373] text-white px-5 py-2.5 rounded-xl text-sm hover:bg-[#C89868] shadow-lg shadow-[#D4A373]/30 transition font-medium">
                     登記新家長
                     </button>
                 </div>
@@ -537,35 +538,35 @@
                     {/* Owner List */}
                     <div className="lg:col-span-2 space-y-4">
                         {MOCK_OWNERS.map(owner => (
-                        <Card key={owner.id} className="group hover:border-orange-200 transition-colors">
+                        <Card key={owner.id} className="group hover:border-[#D4A373]/50 transition-colors">
                             <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                                 <div className="flex items-start gap-5">
-                                <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-500 font-bold text-xl shadow-inner">
+                                <div className="w-14 h-14 bg-[#FFF9F0] rounded-2xl flex items-center justify-center text-[#D4A373] font-bold text-xl shadow-inner">
                                     {owner.name[0]}
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-lg text-slate-800">{owner.name}</h3>
+                                    <h3 className="font-bold text-lg text-[#5C5046]">{owner.name}</h3>
                                     <div className="flex items-center gap-2 mt-1">
-                                    <span className="text-xs font-mono text-slate-400 bg-slate-50 px-2 py-0.5 rounded">{owner.phone}</span>
-                                    <span className="text-xs text-slate-400">•</span>
-                                    <span className="text-xs font-medium text-slate-600">擁有貓隻：<span className="text-indigo-600 font-bold">{owner.cat}</span></span>
+                                    <span className="text-xs font-mono text-[#A8A29E] bg-[#FAF7F2] px-2 py-0.5 rounded">{owner.phone}</span>
+                                    <span className="text-xs text-[#A8A29E]">•</span>
+                                    <span className="text-xs font-medium text-[#8C847E]">擁有貓隻：<span className="text-[#D4A373] font-bold">{owner.cat}</span></span>
                                     </div>
                                     <div className="mt-3 flex gap-2">
-                                        <span className="text-[10px] text-slate-500 bg-slate-100 px-2 py-1 rounded-md border border-slate-200">備註：{owner.note}</span>
+                                        <span className="text-[10px] text-[#8C847E] bg-[#F5F5F4] px-2 py-1 rounded-md border border-[#E7E5E4]">備註：{owner.note}</span>
                                     </div>
                                 </div>
                                 </div>
                                 
                                 <div className="flex flex-col items-end gap-3 min-w-[140px]">
                                 <div className="text-right">
-                                    <p className="text-[10px] text-slate-400 uppercase tracking-wide mb-1">Next Contact</p>
-                                    <div className="text-sm font-bold text-rose-500 flex items-center gap-1.5 bg-rose-50 px-3 py-1.5 rounded-lg border border-rose-100">
+                                    <p className="text-[10px] text-[#A8A29E] uppercase tracking-wide mb-1">Next Contact</p>
+                                    <div className="text-sm font-bold text-[#BE123C] flex items-center gap-1.5 bg-[#FFF1F2] px-3 py-1.5 rounded-lg border border-[#FFE4E6]">
                                         <Calendar size={14}/> {owner.nextContact}
                                     </div>
                                 </div>
                                 <div className="flex gap-2 w-full md:w-auto">
-                                    <button className="flex-1 md:flex-none px-4 py-2 bg-white border border-slate-200 text-slate-600 text-xs font-bold rounded-lg hover:bg-slate-50 hover:border-slate-300 transition">紀錄</button>
-                                    <button className="flex-1 md:flex-none px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition">完成</button>
+                                    <button className="flex-1 md:flex-none px-4 py-2 bg-white border border-[#E5E0D8] text-[#8C847E] text-xs font-bold rounded-lg hover:bg-[#FAF7F2] hover:border-[#D6CCC2] transition">紀錄</button>
+                                    <button className="flex-1 md:flex-none px-4 py-2 bg-[#8C7B70] text-white text-xs font-bold rounded-lg hover:bg-[#6D5D53] transition">完成</button>
                                 </div>
                                 </div>
                             </div>
@@ -575,9 +576,9 @@
 
                     {/* Follow Up Strategy Sidebar */}
                     <div className="space-y-4">
-                        <Card className="bg-gradient-to-br from-indigo-900 to-slate-900 text-white border-none shadow-xl">
+                        <Card className="bg-gradient-to-br from-[#5C5046] to-[#433831] text-white border-none shadow-xl">
                         <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
-                            <Heart size={20} className="text-rose-400" /> 標準回訪 SOP
+                            <Heart size={20} className="text-[#E89A9A]" /> 標準回訪 SOP
                         </h3>
                         <div className="relative border-l border-white/20 ml-3 space-y-8 pl-8 py-2">
                             {[
@@ -586,18 +587,18 @@
                             { day: '6 Months', title: '絕育提醒', desc: '安排手術，索取證明發放證書。', active: false }
                             ].map((step, i) => (
                             <div key={i} className="relative">
-                                <div className={`absolute -left-[39px] w-6 h-6 rounded-full border-4 border-slate-900 flex items-center justify-center ${step.active ? 'bg-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.5)]' : 'bg-slate-700'}`}>
+                                <div className={`absolute -left-[39px] w-6 h-6 rounded-full border-4 border-[#433831] flex items-center justify-center ${step.active ? 'bg-[#E89A9A] shadow-[0_0_15px_rgba(232,154,154,0.5)]' : 'bg-[#8C7B70]'}`}>
                                     {step.active && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
                                 </div>
-                                <span className={`text-[10px] font-bold uppercase tracking-wider mb-1 block ${step.active ? 'text-rose-400' : 'text-slate-500'}`}>{step.day}</span>
-                                <h4 className={`font-bold text-sm ${step.active ? 'text-white' : 'text-slate-300'}`}>{step.title}</h4>
-                                <p className="text-xs text-slate-400 mt-1 leading-relaxed">{step.desc}</p>
+                                <span className={`text-[10px] font-bold uppercase tracking-wider mb-1 block ${step.active ? 'text-[#E89A9A]' : 'text-[#A8A29E]'}`}>{step.day}</span>
+                                <h4 className={`font-bold text-sm ${step.active ? 'text-white' : 'text-[#D6CCC2]'}`}>{step.title}</h4>
+                                <p className="text-xs text-[#A8A29E] mt-1 leading-relaxed">{step.desc}</p>
                             </div>
                             ))}
                         </div>
                         
-                        <div className="mt-8 p-4 bg-white/5 rounded-xl border border-white/5 text-xs text-slate-300 leading-relaxed">
-                            💡 <span className="text-amber-300 font-bold">Pro Tip:</span> 良好的回訪能提升 40% 的家長轉介紹率。
+                        <div className="mt-8 p-4 bg-white/5 rounded-xl border border-white/5 text-xs text-[#D6CCC2] leading-relaxed">
+                            💡 <span className="text-[#FFE4C4] font-bold">Pro Tip:</span> 良好的回訪能提升 40% 的家長轉介紹率。
                         </div>
                         </Card>
                     </div>
@@ -612,38 +613,38 @@
                 onClick={() => { setActiveTab(id); setIsMobileMenuOpen(false); }}
                 className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-300 group font-medium ${
                     activeTab === id 
-                    ? 'bg-gradient-to-r from-amber-400 to-orange-400 text-white shadow-lg shadow-orange-500/20' 
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-gradient-to-r from-[#D4A373] to-[#C88B60] text-white shadow-lg shadow-[#D4A373]/30' 
+                    : 'text-[#A8A29E] hover:text-[#FFE4C4] hover:bg-white/5'
                 }`}
                 >
-                <Icon size={20} className={`transition-colors ${activeTab === id ? 'text-white' : 'group-hover:text-amber-400'}`} />
+                <Icon size={20} className={`transition-colors ${activeTab === id ? 'text-white' : 'group-hover:text-[#D4A373]'}`} />
                 <span className="tracking-wide">{label}</span>
                 {activeTab === id && <ChevronRight size={16} className="ml-auto opacity-50" />}
                 </button>
             );
 
             return (
-                <div className="min-h-screen bg-[#F8F9FB] font-sans text-slate-800 flex overflow-hidden selection:bg-amber-100 selection:text-amber-900">
+                <div className="min-h-screen bg-[#FFFBF7] font-sans text-[#5C5046] flex overflow-hidden selection:bg-[#D4A373] selection:text-white">
                 {/* Sidebar (Desktop) */}
-                <aside className="hidden lg:flex flex-col w-[280px] bg-[#0F172A] h-screen sticky top-0 p-6 shadow-2xl z-10 relative overflow-hidden">
+                <aside className="hidden lg:flex flex-col w-[280px] bg-[#4E433C] h-screen sticky top-0 p-6 shadow-2xl z-10 relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
-                    <div className="absolute -top-[100px] -right-[100px] w-[300px] h-[300px] bg-indigo-600 rounded-full blur-[100px]"></div>
-                    <div className="absolute bottom-[0] left-[0] w-[200px] h-[200px] bg-amber-600 rounded-full blur-[80px]"></div>
+                    <div className="absolute -top-[100px] -right-[100px] w-[300px] h-[300px] bg-[#8C7B70] rounded-full blur-[100px]"></div>
+                    <div className="absolute bottom-[0] left-[0] w-[200px] h-[200px] bg-[#D4A373] rounded-full blur-[80px]"></div>
                     </div>
 
                     <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-12 px-2 mt-2">
-                        <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#D4A373] to-[#C88B60] rounded-xl flex items-center justify-center text-white shadow-lg shadow-[#D4A373]/20">
                         <Cat size={24} />
                         </div>
                         <div>
                         <h1 className="text-xl font-bold text-white tracking-wide font-serif">AURUM MANOR</h1>
-                        <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em]">Professional Cattery</p>
+                        <p className="text-[10px] text-[#D6CCC2] uppercase tracking-[0.2em]">Professional Cattery</p>
                         </div>
                     </div>
 
                     <nav className="space-y-2 flex-1">
-                        <div className="text-xs font-bold text-slate-500 uppercase tracking-widest px-4 mb-4">Menu</div>
+                        <div className="text-xs font-bold text-[#A8A29E] uppercase tracking-widest px-4 mb-4">Menu</div>
                         <NavItem id="dashboard" label="總覽儀表板" icon={Settings} />
                         <NavItem id="breeding" label="繁育與血統" icon={Dna} />
                         <NavItem id="health" label="健康管理" icon={Syringe} />
@@ -654,20 +655,20 @@
 
                     <div className="relative z-10 mt-auto pt-6 border-t border-white/10">
                     <div className="flex items-center gap-3 px-2 p-3 rounded-xl hover:bg-white/5 transition cursor-pointer group">
-                        <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold border-2 border-[#0F172A] shadow-md">A</div>
+                        <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#8C7B70] to-[#5C5046] flex items-center justify-center text-white font-bold border-2 border-[#4E433C] shadow-md">A</div>
                         <div className="flex-1">
-                            <div className="text-sm font-bold text-white group-hover:text-amber-400 transition">Admin User</div>
-                            <div className="text-xs text-slate-500">主理人帳號</div>
+                            <div className="text-sm font-bold text-white group-hover:text-[#FFE4C4] transition">Admin User</div>
+                            <div className="text-xs text-[#A8A29E]">管理員帳號</div>
                         </div>
-                        <Settings size={16} className="text-slate-500 group-hover:text-white transition"/>
+                        <Settings size={16} className="text-[#A8A29E] group-hover:text-white transition"/>
                     </div>
                     </div>
                 </aside>
 
                 {/* Mobile Header */}
-                <div className="lg:hidden fixed top-0 left-0 w-full bg-[#0F172A] z-50 px-4 py-4 flex justify-between items-center shadow-md">
+                <div className="lg:hidden fixed top-0 left-0 w-full bg-[#4E433C] z-50 px-4 py-4 flex justify-between items-center shadow-md">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center text-white">
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#D4A373] to-[#C88B60] rounded-lg flex items-center justify-center text-white">
                         <Cat size={18} />
                         </div>
                         <span className="font-bold text-white font-serif tracking-wide">AURUM MANOR</span>
@@ -679,7 +680,7 @@
 
                 {/* Mobile Menu Overlay */}
                 {isMobileMenuOpen && (
-                    <div className="lg:hidden fixed inset-0 bg-[#0F172A] z-40 pt-24 px-6 space-y-4">
+                    <div className="lg:hidden fixed inset-0 bg-[#4E433C] z-40 pt-24 px-6 space-y-4">
                     <NavItem id="dashboard" label="總覽儀表板" icon={Settings} />
                     <NavItem id="breeding" label="繁育與血統" icon={Dna} />
                     <NavItem id="health" label="健康管理" icon={Syringe} />
@@ -689,7 +690,7 @@
                 )}
 
                 {/* Main Content Area */}
-                <main className="flex-1 p-4 lg:p-12 mt-16 lg:mt-0 overflow-y-auto bg-[#F8F9FB] relative">
+                <main className="flex-1 p-4 lg:p-12 mt-16 lg:mt-0 overflow-y-auto bg-[#FFFBF7] relative">
                     <div className="max-w-7xl mx-auto pb-10">
                     {activeTab === 'dashboard' && <DashboardView />}
                     {activeTab === 'breeding' && <BreedingView />}
