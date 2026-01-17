@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <title>開發柴工作室 | AI 智慧科技與客製化網頁</title>
+    <title>開發柴工作室 | 寵物產業數位轉型與 AI 解決方案</title>
     
     <link rel="icon" type="image/png" href="logo.png">
     <meta name="theme-color" content="#020617">
-    <meta name="description" content="開發柴工作室 - 提供電子契約系統、客製化網站與 AI 智慧自動化解決方案。解決您開店接案的卡關難題。">
+    <meta name="description" content="專注於貓舍、寵物美容的數位轉型專家。提供電子契約系統、客製化官網與 AI 自動化解決方案。">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shiba.studio/"> <meta property="og:title" content="開發柴工作室 | 寵物產業的數位魔法師">
+    <meta property="og:description" content="這裡不賣飼料，但我們賣讓您事業順利的魔法！專精寵物契約系統與 AI 自動化。">
+    <meta property="og:image" content="og-image.png"> <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -31,6 +34,7 @@
                     animation: {
                         'pulse-glow': 'pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
                     },
                     keyframes: {
                         'pulse-glow': {
@@ -40,6 +44,10 @@
                         fadeInUp: {
                             'from': { opacity: 0, transform: 'translateY(20px)' },
                             'to': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         }
                     },
                     backgroundImage: {
@@ -98,8 +106,12 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .mobile-menu-enter { opacity: 0; transform: translateY(-10px); }
-        .mobile-menu-enter-active { opacity: 1; transform: translateY(0); transition: all 300ms; }
+        /* Toast 動畫 */
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .toast-enter { animation: slideIn 0.3s ease-out forwards; }
     </style>
 </head>
 <body>
@@ -119,9 +131,24 @@
             return <span ref={iconRef} className="inline-flex items-center justify-center"><i data-lucide={name} style={{ width: size, height: size }}></i></span>;
         };
 
+        // --- Toast 通知元件 ---
+        const Toast = ({ message, onClose }) => {
+            useEffect(() => {
+                const timer = setTimeout(onClose, 2000);
+                return () => clearTimeout(timer);
+            }, [onClose]);
+
+            return (
+                <div className="fixed bottom-24 right-4 z-50 bg-shiba-main text-black px-4 py-2 rounded shadow-lg font-bold flex items-center gap-2 toast-enter">
+                    <Icon name="check-circle" size={18}/> {message}
+                </div>
+            );
+        };
+
         const App = () => {
             const [scrolled, setScrolled] = useState(false);
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [toastMsg, setToastMsg] = useState(null);
 
             useEffect(() => {
                 const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -135,9 +162,21 @@
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
             };
 
+            const copyToClipboard = (text, label) => {
+                navigator.clipboard.writeText(text).then(() => {
+                    setToastMsg(`已複製 ${label}`);
+                });
+            };
+
             return (
                 <div className="min-h-screen relative selection:bg-shiba-main selection:text-black">
+                    {toastMsg && <Toast message={toastMsg} onClose={() => setToastMsg(null)} />}
                     
+                    {/* --- 浮動 Line 按鈕 (Mobile Only) --- */}
+                    <a href="https://line.me/R/ti/p/@221acvwy" target="_blank" className="md:hidden fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#06c755] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(6,199,85,0.4)] animate-float hover:scale-110 transition-transform">
+                        <svg viewBox="0 0 24 24" fill="white" className="w-8 h-8"><path d="M12 .5C5.4.5.5 4.8.5 10.2c0 2.9 1.4 5.5 3.7 7.2-.2.7-.8 2.5-.9 3 0 0-.2.4.2.5.4.1.9-.2.9-.2 1.4-.4 3.3-1.1 4.5-1.6.9.2 1.9.3 2.9.3 6.6 0 12-4.3 12-9.7S17.6.5 12 .5z"/></svg>
+                    </a>
+
                     {/* --- 導航列 --- */}
                     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || mobileMenuOpen ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
@@ -152,7 +191,7 @@
                             {/* 桌面選單 */}
                             <div className="hidden md:flex items-center gap-8 text-xs font-mono font-bold text-slate-400 tracking-widest">
                                 <button onClick={() => scrollToSection('services')} className="hover:text-shiba-glow transition-colors">服務介紹</button>
-                                <button onClick={() => scrollToSection('demo')} className="hover:text-shiba-glow transition-colors">作品展示</button>
+                                <button onClick={() => scrollToSection('demo')} className="hover:text-shiba-glow transition-colors">解決方案</button>
                                 <button onClick={() => scrollToSection('pricing')} className="hover:text-shiba-glow transition-colors">收費方案</button>
                             </div>
 
@@ -171,7 +210,7 @@
                         {mobileMenuOpen && (
                             <div className="absolute top-0 left-0 w-full h-screen bg-[#020617]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 z-40 animate-fade-in-up">
                                 <button onClick={() => scrollToSection('services')} className="text-2xl font-bold text-white hover:text-shiba-main">服務介紹</button>
-                                <button onClick={() => scrollToSection('demo')} className="text-2xl font-bold text-white hover:text-shiba-main">作品展示</button>
+                                <button onClick={() => scrollToSection('demo')} className="text-2xl font-bold text-white hover:text-shiba-main">解決方案</button>
                                 <button onClick={() => scrollToSection('pricing')} className="text-2xl font-bold text-white hover:text-shiba-main">收費方案</button>
                                 <button onClick={() => scrollToSection('contact')} className="px-8 py-3 bg-shiba-main text-black font-bold text-xl rounded shadow-[0_0_20px_rgba(6,182,212,0.4)] mt-4">
                                     聯絡開發柴
@@ -200,7 +239,7 @@
                             </h1>
                             <p className="text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-light px-4">
                                 這裡不賣飼料，但我們結合 <span className="text-shiba-glow font-bold">AI 智慧科技</span> 與 <span className="text-white font-bold">頂級工藝</span>。<br className="hidden sm:block"/>
-                                專為您解決開店、接案時遇到的各種技術難題。
+                                專為<span className="text-white border-b border-shiba-gold/50 pb-0.5">寵物業者</span>與<span className="text-white border-b border-shiba-gold/50 pb-0.5">個人接案者</span>打造的數位資產。
                             </p>
                             
                             <div className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto px-6">
@@ -209,8 +248,8 @@
                                     啟動專案諮詢
                                 </button>
                                 <button onClick={() => scrollToSection('demo')} className="flex-1 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-shiba-main/50 rounded font-bold text-lg transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
-                                    <Icon name="monitor-play" size={20}/> 
-                                    參觀展示 Demo
+                                    <Icon name="layers" size={20}/> 
+                                    探索解決方案
                                 </button>
                             </div>
                         </div>
@@ -266,9 +305,8 @@
                         </div>
                     </section>
 
-{/* --- 解決方案展示 (Demo/Solutions) --- */}
+                    {/* --- 解決方案展示 (Demo/Solutions) --- */}
                     <section id="demo" className="py-24 px-4 bg-[#050a14] relative overflow-hidden">
-                        {/* 背景裝飾 */}
                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none"></div>
                         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-shiba-main/5 rounded-full blur-[80px] pointer-events-none"></div>
                         
@@ -281,9 +319,7 @@
                                 </div>
                             </div>
 
-                            {/* 2x2 Grid for 4 Categories */}
                             <div className="grid md:grid-cols-2 gap-6">
-                                
                                 {/* 1. 專業貓舍管理 */}
                                 <div className="group relative bg-shiba-card border border-white/5 rounded-2xl p-8 overflow-hidden hover:border-shiba-main/30 transition-all">
                                     <div className="absolute top-4 right-4 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-slate-400 font-mono flex items-center gap-2">
@@ -387,10 +423,8 @@
                                         ))}
                                     </ul>
                                 </div>
-
                             </div>
                             
-                            {/* 底部行動呼籲 */}
                             <div className="mt-12 text-center">
                                 <p className="text-slate-400 text-sm mb-6">想看這些系統的實際運作演示？歡迎直接與我聯繫</p>
                                 <button onClick={() => scrollToSection('contact')} className="px-8 py-3 border border-white/10 hover:border-shiba-main hover:bg-shiba-main/10 text-white rounded-full transition-all flex items-center gap-2 mx-auto">
@@ -469,16 +503,26 @@
                             
                             <div className="grid sm:grid-cols-2 gap-4 max-w-lg mx-auto">
                                 {/* Line 官方帳號連結 */}
-                                <a href="https://line.me/R/ti/p/@221acvwy" target="_blank" className="group flex items-center justify-center gap-3 p-4 bg-[#06c755] text-white rounded-lg font-bold hover:bg-[#05b34c] transition-all shadow-lg shadow-green-900/20">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12 .5C5.4.5.5 4.8.5 10.2c0 2.9 1.4 5.5 3.7 7.2-.2.7-.8 2.5-.9 3 0 0-.2.4.2.5.4.1.9-.2.9-.2 1.4-.4 3.3-1.1 4.5-1.6.9.2 1.9.3 2.9.3 6.6 0 12-4.3 12-9.7S17.6.5 12 .5z"/></svg>
-                                    <span>LINE 官方帳號</span>
-                                </a>
+                                <div className="flex flex-col gap-2">
+                                    <a href="https://line.me/R/ti/p/@221acvwy" target="_blank" className="group flex items-center justify-center gap-3 p-4 bg-[#06c755] text-white rounded-lg font-bold hover:bg-[#05b34c] transition-all shadow-lg shadow-green-900/20">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12 .5C5.4.5.5 4.8.5 10.2c0 2.9 1.4 5.5 3.7 7.2-.2.7-.8 2.5-.9 3 0 0-.2.4.2.5.4.1.9-.2.9-.2 1.4-.4 3.3-1.1 4.5-1.6.9.2 1.9.3 2.9.3 6.6 0 12-4.3 12-9.7S17.6.5 12 .5z"/></svg>
+                                        <span>LINE 官方帳號</span>
+                                    </a>
+                                    <button onClick={() => copyToClipboard('@221acvwy', 'LINE ID')} className="text-xs text-slate-500 hover:text-white flex items-center justify-center gap-1 py-1">
+                                        <Icon name="copy" size={12}/> 複製 ID: @221acvwy
+                                    </button>
+                                </div>
 
                                 {/* Email 連結 */}
-                                <a href="mailto:shiba.studio.tw@gmail.com" className="group flex items-center justify-center gap-3 p-4 bg-white/10 border border-white/10 text-white rounded-lg font-bold hover:bg-white/20 transition-all">
-                                    <Icon name="mail" size={20}/>
-                                    <span>shiba.studio.tw@gmail.com</span>
-                                </a>
+                                <div className="flex flex-col gap-2">
+                                    <a href="mailto:shiba.studio.tw@gmail.com" className="group flex items-center justify-center gap-3 p-4 bg-white/10 border border-white/10 text-white rounded-lg font-bold hover:bg-white/20 transition-all">
+                                        <Icon name="mail" size={20}/>
+                                        <span>Email 寄信</span>
+                                    </a>
+                                    <button onClick={() => copyToClipboard('shiba.studio.tw@gmail.com', 'Email')} className="text-xs text-slate-500 hover:text-white flex items-center justify-center gap-1 py-1">
+                                        <Icon name="copy" size={12}/> 複製 Email
+                                    </button>
+                                </div>
                             </div>
 
                             <p className="mt-8 text-xs text-slate-500 font-mono">
