@@ -1,8 +1,10 @@
 # 🐕 開發柴工作室 | SHIBA STUDIO
-### 專注於寵物產業的數位轉型與 AI 自動化解決方案
+### Empowering the Pet Industry with Digital Magic.
+
+![Shiba Studio Social Preview](social-preview.png)
 
 <p align="center">
-  <img src="logo.png" width="150" alt="Shiba Studio Logo">
+  <img src="logo.png" width="120" alt="Shiba Studio Logo">
 </p>
 
 <p align="center">
@@ -34,11 +36,12 @@
 
 ## 📁 專案說明 (Project Structure)
 
-本倉庫為 **開發柴工作室** 之官方首頁代碼：
+本倉庫為 **開發柴工作室** 之官方首頁核心代碼：
 - `index.html`: 主網頁核心代碼 (React-based)
 - `404.html`: 自訂錯誤頁面 (已被柴柴叼走頁面)
-- `logo.png`: 官方品牌識別
-- `README.md`: 專案技術文件
+- `logo.png`: 官方品牌識別標誌
+- `social-preview.png`: 社交平台分享預覽圖
+- `README.md`: 專案技術文件與工作室介紹
 
 ---
 
