@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="logo.png">
     <meta name="theme-color" content="#020617">
 <meta name="description" content="寵物店老闆的救星！內建「舊客自動帶入」、「住宿費自動計算」與「無紙化電子合約」。開發柴工作室——專為貓舍、美容室、寵物旅館打造的買斷制數位系統。">
-    <meta name="keywords" content="網頁設計, 電子合約, 寵物美容系統, 貓舍管理, AI自動化, Line官方帳號, 台南網頁設計, 開發柴">
+    <meta name="keywords" content="網頁設計, 電子合約, 寵物美容系統, 貓舍管理, AI自動化, Line官方帳號, 網頁設計, 開發柴">
 
 <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.shibastudio.online/">
@@ -404,7 +404,7 @@
 <p className="text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-light px-4">
     別再讓<span className="text-slate-200 mx-1">手寫資料</span>與<span className="text-slate-200 mx-1">報價爭議</span>浪費您的時間。<br className="hidden sm:block"/>
     開發柴提供內建 <span className="text-shiba-glow font-bold">舊客一鍵帶入</span>、<span className="text-shiba-glow font-bold">自動計算住宿/美容費</span> 的電子合約系統。<br/>
-    <span className="text-shiba-main/80 text-sm mt-2 block">無需改變現場流程，手機/平板直接使用，老員工也能 3 分鐘上手。</span>
+<span className="text-shiba-main/80 text-sm mt-2 block">免下載 App、免安裝軟體。手機 / 平板 / 電腦打開網頁即用，老員工也能 3 分鐘上手。</span>
 </p>
                             
                             <div className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto px-6">
@@ -636,8 +636,8 @@
                                 </button>
                             </div>
                         </div>
-                    </section>
-
+                    </section>                
+                        
                     {/* --- 定價策略 (Pricing) - 優化版 --- */}
                     <section id="pricing" className="py-32 px-4 bg-[#020617]">
                         <div className="max-w-5xl mx-auto">
@@ -654,7 +654,7 @@
                                     
                                     <div className="space-y-8">
                                         {[
-                                            {title: "完整原始碼交付", sub: "Source Code Ownership - 掌握核心資產"},
+                                            {title: "資料庫完全私有化", sub: "Data Ownership - 資料掌握在您手中，不必擔心平台倒閉或漲價"},
                                             {title: "無隱藏月費", sub: "Zero Monthly Fees - 大幅降低長期營運成本"},
                                             {title: "一年技術保固", sub: "1-Year Premium Support - 包含網頁設定與 Bug 修復，讓您無後顧之憂"}
                                         ].map((item, i) => (
@@ -699,9 +699,9 @@
                                                     <span className="text-shiba-gold font-bold flex items-center gap-2 text-sm sm:text-base">
                                                         <Icon name="star" size={16} className="fill-current"/> 開發柴買斷制
                                                     </span>
-                                                    <span className="font-mono text-transparent bg-clip-text bg-gradient-to-r from-shiba-gold to-white font-black text-2xl group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
-                                                        $ One Time
-                                                    </span>
+<span className="font-mono text-transparent bg-clip-text bg-gradient-to-r from-shiba-gold to-white font-black text-2xl group-hover:scale-110 transition-transform drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
+    $ 終身買斷
+</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -711,6 +711,45 @@
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+{/* --- 常見問答 (FAQ) --- */}
+                    <section id="faq" className="py-24 px-4 bg-[#050a14] border-t border-white/5 relative">
+                        <div className="max-w-3xl mx-auto">
+                            <div className="text-center mb-16 reveal-on-scroll">
+                                <h2 className="text-3xl md:text-4xl font-black text-white mb-4">老闆們最擔心的問題</h2>
+                                <p className="text-slate-400">關於「買斷制」與「系統維護」，我們一次說清楚。</p>
+                            </div>
+                            
+                            <div className="space-y-4 reveal-on-scroll">
+                                {[
+                                    {
+                                        q: "買斷後，真的不需要再付月費嗎？",
+                                        a: "是的！我們協助您將系統部署在 Github Pages (前端) 與 Supabase (資料庫)，對於中小型店家來說，這些平台的免費額度通常綽綽有餘，您幾乎可以達成 0 成本營運。"
+                                    },
+                                    {
+                                        q: "如果不租用了，資料會不見嗎？",
+                                        a: "不會。這是買斷制最大的優點。資料庫掌握在您自己手中 (您的 Google/Github 帳號)，就算開發柴工作室不存在了，您的資料依然完好無損，永遠屬於您。"
+                                    },
+                                    {
+                                        q: "以後想要修改功能或新增欄位怎麼辦？",
+                                        a: "我們會交付完整的原始碼 (Source Code) 給您。未來若有新需求，您可以隨時找我們進行客製化修改 (老客戶享優惠)，或者拿著原始碼請任何一位工程師協助開發，完全不被綁架。"
+                                    },
+                                    {
+                                        q: "系統壞掉了找誰修？",
+                                        a: "我們提供第一年完整的技術保固。若系統出現 Bug，我們會免費修復。第二年起，若系統運作正常則無需付費，若需要我們協助維護或備份，也可選擇低負擔的年度維護方案。"
+                                    }
+                                ].map((item, i) => (
+                                    <div key={i} className="bg-shiba-card border border-white/5 rounded-2xl p-6 hover:border-shiba-main/30 transition-colors group">
+                                        <h3 className="text-lg font-bold text-white mb-3 flex items-start gap-3">
+                                            <span className="text-shiba-main mt-1">Q.</span> {item.q}
+                                        </h3>
+                                        <p className="text-slate-400 text-sm leading-relaxed pl-7 border-l-2 border-white/10 group-hover:border-shiba-main/50 transition-colors">
+                                            {item.a}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </section>
@@ -875,14 +914,24 @@
                                 <div className="flex flex-col items-start">
                                     <span className="font-mono text-xs text-slate-500">© 2026 SHIBA STUDIO. All Rights Reserved.</span>
 <span className="text-[10px] text-slate-700 mt-1">Made with 🐕 & ☕ in Taiwan.</span>
+{/* 新增技術標籤展示 */}
+                                <div className="flex items-center gap-2 mt-1 opacity-40 hover:opacity-100 transition-opacity">
+                                    <span className="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700">React</span>
+                                    <span className="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700">Tailwind</span>
+                                    <span className="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700">Supabase</span>
                                 </div>
                             </div>
-<div className="flex gap-8 text-slate-600 text-xs font-mono tracking-widest">
-                                <a href="#" className="hover:text-shiba-main transition-colors">PRIVACY</a>
-                                <a href="#" className="hover:text-shiba-main transition-colors">TERMS</a>
-                                <a href="mailto:contact@shibastudio.online" className="hover:text-shiba-main transition-colors">CONTACT</a>
-                            </div>
-                        </div>
+                        </div> {
+                            
+                        <div className="flex gap-6 text-slate-500 text-xs font-bold tracking-widest">
+                            
+    <button onClick={() => scrollToSection('services')} className="hover:text-shiba-main transition-colors">服務介紹</button>
+    <button onClick={() => scrollToSection('demo')} className="hover:text-shiba-main transition-colors">系統演示</button>
+    <a href="https://line.me/R/ti/p/@221acvwy" target="_blank" className="hover:text-shiba-main transition-colors flex items-center gap-1">
+        <Icon name="message-circle" size={12}/> 線上諮詢
+    </a>
+</div>
+                        }</div>
                     </footer>
                 </div>
             );
